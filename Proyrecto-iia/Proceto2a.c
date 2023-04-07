@@ -1,54 +1,28 @@
-
-//Prpgrama para la creacion de un tornamento de futbol
+//Programa para la creacion de un torneo de futbol
+//Librerias de C 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include <string.h>
-#include "libreria.h"
-#include "players.h"
-
-#define MAX_PLAYERS 96
-#define MAX_NAME_LENGTH 50
-#define num_players 12
-#define num_teams 8
-#define num_matches 7
-
-
-
-typedef struct {
-    char name[MAX_NAME_LENGTH];
-    int age;
-    int attack;
-    int defense;
-} Player[MAX_PLAYERS];
-
-typedef struct {
-    char name[MAX_NAME_LENGTH];
-    Player players[12];
-    int puntos;
-} Team[num_teams];
-
-typedef struct {
-    char winner [MAX_NAME_LENGTH];
-    char loser [MAX_NAME_LENGTH];
-    int pointsW ;
-    int pointsL ;
-} Matches[num_matches];
-
-
-int main ()
-{   
-    caratula ();
-    
-    assign_name_players (Player);
-
-   
-    
-   
+//Mis librerias 
+#include "librerias/prints.h"
+#include "librerias/moodFiles.h"
+#include "librerias/struct.h"
+#include "librerias/funciones.h"
+//Main
+int main (){   
+    Player players[MAX_PLAYERS];
+    Team teams[NUM_TEAMS];
+    Match matches[NUM_MATCHES];
+    srand(time(NULL));
+    caratula ();   
+    read_players_from_file("datos_players.txt", players);
+    read_teams_from_file("datos_teams.txt", teams);
+    point_rand_player(players);    
+    print_players(players);
+    assing_team_info(teams, players);
+    print_teams(teams);
+    tournament(teams, matches);
     return 0;
 }
-
-/*
-
-*/
